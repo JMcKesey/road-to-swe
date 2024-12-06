@@ -10,6 +10,7 @@ class Stack{
 		void push(int x);
 		int pop();
 		bool isEmpty();
+		int peek();
 };
 
 Stack::Stack(){
@@ -38,12 +39,15 @@ int Stack::pop(){
 	std::cout << "Stack underflow" << std::endl;
 	return -999;
 }
+int Stack::peek(){
+	return top;
+}
 
 int main() {
 	Stack stack;
 	std::cout << stack.isEmpty() << std::endl;
 	stack.push(68);
 	std::cout << stack.pop() << std::endl;
-	std::cout << "The top of the stack is: " << stack.top;
+	std::cout << "Peek: "<< stack.peek();
 	return 0;
 }
