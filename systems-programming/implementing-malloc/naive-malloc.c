@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdio.h>
 
 #define ALIGNMENT 8 // use alignment size of 8 for performance
 // adding alignment-1 to size ensures it won't be a multiple of 8
@@ -40,6 +41,21 @@ void free(void *ptr)
 // there's no coalescing(merging adjacent free blocks) which leads to fragmentation
 int main()
 {
+  int *arr = malloc(10 * sizeof(int));
+  
+  int i;
+  for(i=0; i<10; ++i)
+  {
+    arr[i] = i;
+  }
 
+  for(i=0; i<10; ++i)
+  {
+    printf("%d\n", arr[i]);
+  }
+
+  // used valgrind to profile memory of this program with and
+  // without the free to see how memory is allocated and freed
+  free(arr);
 }
 
